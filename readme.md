@@ -33,7 +33,8 @@ Sample usage is shown in `/examples/main.cpp` for a reference. Feel free to use 
 std::unordered_map<std::string, std::vector<Foo::Pair>> Foo::FooParser::get_result();
 
 // Get std::vector<Foo::Pair> (key value pair) from a IDENTIFIER
-std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_identifier(const std::string& IDENTIFIER);
+std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_identifier(
+						const std::string& IDENTIFIER);
 
 // Get std::vector<Foo::Pair> (key value pair) form a Foo structure's Index
 std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_index(std::size_t INDEX);
