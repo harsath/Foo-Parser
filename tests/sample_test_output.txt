@@ -1,0 +1,28 @@
+user@hostname:/path/to/test$ ./parse_test
+[ OK ] -> parser: _identifier parsing check
+[ OK ] -> _identifier initilization check
+[ OK ] -> unordered_map 1st Foo structure's 1st key
+[ OK ] -> unordered_map 1st Foo structure's 1nd key
+[ OK ] -> unordered_map 1st Foo structure's 2st key
+[ OK ] -> unordered_map 1st Foo structure's 2nd key
+[ OK ] -> unordered_map 2st Foo structure's 1st key
+[ OK ] -> unordered_map 2st Foo structure's 1nd key
+[ OK ] -> unordered_map 2st Foo structure's 2st key
+[ OK ] -> unordered_map 2st Foo structure's 2nd key
+[ OK ] -> get_identifier() check 1
+[ OK ] -> get_identifier() check 2
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 0 first Foo::Pair key check
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 0 first Foo::Pair value check
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 0 2nd Foo::Pair key check
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 0 2nd Foo::Pair value check
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 1 first Foo::Pair key check
+[ OK ] -> parser.get_key_value_pair_from_identifier() index 1 first Foo::Pair value check
+[ OK ] -> parser.get_key_value_pair_from_index() index 0 first Foo::Pair key check
+[ OK ] -> parser.get_key_value_pair_from_index() index 0 first Foo::Pair value check
+[ OK ] -> parser.get_key_value_pair_from_index() index 1 2nd Foo::Pair key check
+[ OK ] -> parser.get_key_value_pair_from_index() index 1 2nd Foo::Pair value check
+
+
+RESULTS:- (Total Tests: 22)
+Total OK: 22
+Total FAILED: 0

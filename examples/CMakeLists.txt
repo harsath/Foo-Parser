@@ -1,0 +1,6 @@
+include_directories(../foo_parser/include)
+link_directories(../foo_parser/src)
+add_executable(example ./main.cpp)
+target_link_libraries(example foo_parser)
+target_compile_options(example PRIVATE -g)
+# set_target_properties(example PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../bin/example)

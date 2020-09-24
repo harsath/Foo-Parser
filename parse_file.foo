@@ -1,4 +1,10 @@
-Foo identifier_one {
+Foo identifier_one 
+{
 	key_one -> value_one 
 	key_two -> value_two 
+}
+Foo identifier_two 
+{
+	sec_key_one -> sec_value_one 
+	sec_key_two -> sec_value_two 
 }

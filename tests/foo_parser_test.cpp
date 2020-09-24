@@ -1,5 +1,6 @@
 #include "./test_helper.cpp"
-#include "../Foo_parser.cpp"
+#include "Foo_parser.hpp"
+#include <unordered_map>
 
 class FooParser_test{
 	private:
@@ -7,20 +8,45 @@ class FooParser_test{
 	public:
 		void parser_codeblock_test(){
 			test_parser.foo_parse();
-			ASSERT_EQ(test_parser._identifier, "identifier_one", "parser: _identifier parsing check");
-			const char* test_line = "	key_one -> value_one";
-			std::vector<std::string> tokenized_pair = helper_key_value_split(test_line);
-			ASSERT_EQ(tokenized_pair[0], "key_one", "helper_key_value_split: key parsed in vector check");
-			ASSERT_EQ(tokenized_pair[1], "value_one", "helper_key_value_split: value parsed in vector check");
-			ASSERT_EQ(tokenized_pair.size(), (unsigned) 2, "helper_key_value_split: vector size() check");
+			std::unordered_map<std::string, std::vector<Foo::Pair>> map_results = test_parser.get_result();
+			ASSERT_EQ(test_parser._identifier.at(0), "identifier_one", "parser: _identifier parsing check");
+			ASSERT_EQ(test_parser._identifier.at(1), "identifier_two", "_identifier initilization check");
 
-			const char* test_line_2 = "}";
-			std::vector<std::string> tokenized_pair_2 = helper_key_value_split(test_line_2);
-			ASSERT_EQ(tokenized_pair_2.size(), (unsigned) 1, "helper_key_value_split: parser check for } EOL");
+			ASSERT_EQ(map_results["identifier_one"].at(0).key, "key_one", "unordered_map 1st Foo structure's 1st key");
+			ASSERT_EQ(map_results["identifier_one"].at(0).value, "value_one", "unordered_map 1st Foo structure's 1nd key");
+
+			ASSERT_EQ(map_results[test_parser._identifier.at(0)].at(1).key, "key_two", "unordered_map 1st Foo structure's 2st key");
+			ASSERT_EQ(map_results[test_parser._identifier.at(0)].at(1).value, "value_two", "unordered_map 1st Foo structure's 2nd key");
+
+			ASSERT_EQ(map_results[test_parser._identifier.at(1)].at(0).key, "sec_key_one", "unordered_map 2st Foo structure's 1st key");
+			ASSERT_EQ(map_results[test_parser._identifier.at(1)].at(0).value, "sec_value_one", "unordered_map 2st Foo structure's 1nd key");
+
+			ASSERT_EQ(map_results[test_parser._identifier.at(1)].at(1).key, "sec_key_two", "unordered_map 2st Foo structure's 2st key");
+			ASSERT_EQ(map_results[test_parser._identifier.at(1)].at(1).value, "sec_value_two", "unordered_map 2st Foo structure's 2nd key");
+
+			std::vector<std::string> identifier = test_parser.get_identifier();
+			ASSERT_EQ(identifier.at(0), "identifier_one", "get_identifier() check 1");
+			ASSERT_EQ(identifier.at(1), "identifier_two", "get_identifier() check 2");
+
+			std::vector<Foo::Pair> identifier_pair = test_parser.get_key_value_pair_from_identifier(identifier.at(0));
+			ASSERT_EQ(identifier_pair.at(0).key, "key_one", "parser.get_key_value_pair_from_identifier() index 0 first Foo::Pair key check");
+			ASSERT_EQ(identifier_pair.at(0).value, "value_one", "parser.get_key_value_pair_from_identifier() index 0 first Foo::Pair value check");
+			ASSERT_EQ(identifier_pair.at(1).key, "key_two", "parser.get_key_value_pair_from_identifier() index 0 2nd Foo::Pair key check");
+			ASSERT_EQ(identifier_pair.at(1).value, "value_two", "parser.get_key_value_pair_from_identifier() index 0 2nd Foo::Pair value check");
+
+			std::vector<Foo::Pair> identifier_pair_two = test_parser.get_key_value_pair_from_identifier(identifier.at(1));
+			ASSERT_EQ(identifier_pair_two.at(0).key, "sec_key_one", "parser.get_key_value_pair_from_identifier() index 1 first Foo::Pair key check");
+			ASSERT_EQ(identifier_pair_two.at(0).value, "sec_value_one", "parser.get_key_value_pair_from_identifier() index 1 first Foo::Pair value check");
+
+			std::vector<Foo::Pair> key_value_pair_index = test_parser.get_key_value_pair_from_index(0);
+			ASSERT_EQ(identifier_pair.at(0).key, "key_one", "parser.get_key_value_pair_from_index() index 0 first Foo::Pair key check");
+			ASSERT_EQ(identifier_pair.at(0).value, "value_one", "parser.get_key_value_pair_from_index() index 0 first Foo::Pair value check");
+
+			std::vector<Foo::Pair> key_value_pair_index_two = test_parser.get_key_value_pair_from_index(1);
+			ASSERT_EQ(identifier_pair.at(1).key, "key_two", "parser.get_key_value_pair_from_index() index 1 2nd Foo::Pair key check");
+			ASSERT_EQ(identifier_pair.at(1).value, "value_two", "parser.get_key_value_pair_from_index() index 1 2nd Foo::Pair value check");
 			
-			std::unordered_map<std::string, std::vector<Foo::Pair>> parsed_result = test_parser.get_result();
-			ASSERT_EQ(parsed_result[test_parser.get_identifier()].at(0).key, "key_one", "Parser hashmap fillin check");
-			ASSERT_EQ(parsed_result[test_parser.get_identifier()].at(0).value, "value_one", "Parser hashmap fillin check");
+
 		}
 };
 
