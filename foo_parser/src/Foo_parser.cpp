@@ -16,7 +16,7 @@ std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_index(std::size_t
 	if(index < _index_key_value_pair.size()){
 		returner = _index_key_value_pair.at(index);
 	}else{
-		print_macro("Invalid Index");
+		std::cerr << "Invalid Index" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	return returner;
@@ -27,7 +27,7 @@ std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_identifier(const 
 	if(_fillin_datastructure.count(identifier)){
 		returner = _fillin_datastructure.at(identifier);
 	}else{
-		print_macro("Invalid Identifier");
+		std::cerr << "Invalid Identifier" std::endl;
 		exit(EXIT_FAILURE);
 	}
 	return returner;
@@ -58,7 +58,7 @@ void Foo::FooParser::foo_parse() noexcept {
 			lines.emplace_back(std::move(tmp_line));
 		}
 	}else{
-		print_macro("Cannot open the file");
+		std::cerr << "Cannot open the file" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	// parsing the Foo structure
@@ -81,7 +81,7 @@ void Foo::FooParser::foo_parse() noexcept {
 						Foo::Pair tmp_pair = { std::move(key_value_splitter.at(0)), std::move(key_value_splitter.at(2)) };
 						_fillin_datastructure[tmp_identifier].push_back(tmp_pair); 
 					}else{
-						print_macro("Key value pair must be split by \"->\" notation");
+						std::cerr << "Key value pair must be split by \"->\" notation" std::endl; 
 						exit(EXIT_FAILURE);
 					}
 				}else if(token_line == "}"){
@@ -89,7 +89,7 @@ void Foo::FooParser::foo_parse() noexcept {
 					line_state.first_line = true;
 				}
 				else{
-					print_macro("Key -> Value split parsing error. Please check your input");
+					std::cerr << "Key -> Value split parsing error. Please check your input" << std::endl;
 					exit(EXIT_FAILURE);
 				}
 				

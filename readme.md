@@ -43,6 +43,9 @@ std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_index(std::size_t
 std::vector<std::string> get_identifier();
 ```
 
+Building: `$ (mkdir build && cd build && cmake ..)` now, the make files will be generated at `./build/` directory.
+To build the project, `$ (cd build && make)` now, the executables will be generated at `./build/examples` (executable of main.cpp from examples) and `./build/foo_parser/` (parser library) directories. Create/Copy the a file containing Foo structure and execute the binary. Ex: `$ (cd build/examples && cp ../../examples/parse_file.foo . && ./example)` Its good practice to test the build, the test executable will be generated at `./build/tests/parser_test`  and make sure it passes all the tests.
+
 #### All Done!
 
 - [x] Parse the Foo structure and add entried into the datastructure
