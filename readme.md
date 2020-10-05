@@ -2,9 +2,9 @@
 
 Usage syntax:
 ```
-Foo <space> IDENTIFIER <LINEBREAK>
+Foo <space> IDENTIFIER <linebreak>
 {
-	KEY <space> -> <space> VALUE <opspace>	
+	KEY <space> -> <space> VALUE <optional-space>	
 }
 ```
 
@@ -26,7 +26,7 @@ std::unordered_map<std::string, std::vector<Foo::Pair>>
 		  IDENTIFIER,   vector<KEY, VALUE>
 ```
 
-Sample usage is shown in `/examples/main.cpp` for a reference. Feel free to use for your own projects.
+Sample usage of the parser and CMake config is shown in `/examples/main.cpp` and `./examples/CMakeLists.txt` for a reference. Feel free to use for your own projects.
 
 ```c++
 //		       KEY              VALUES
@@ -43,8 +43,10 @@ std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_index(std::size_t
 std::vector<std::string> get_identifier();
 ```
 
-Building: `$ (mkdir build && cd build && cmake ..)` now, the make files will be generated at `./build/` directory. <br>
-To build the project, `$ (cd build && make)` now, the executables will be generated at `./build/examples` (executable of main.cpp from examples) and `./build/foo_parser/` (parser library) directories. <br> Create/Copy the a file containing Foo structure and execute the binary. Ex: `$ (cd build/examples && cp ../../examples/parse_file.foo . && ./example)` <br> Its good practice to test the build, the test executable will be generated at `./build/tests/parser_test`  and make sure it passes all the tests.
+* Building: `$ (mkdir build && cd build && cmake ..)` now, the make files will be generated at `./build/` directory. <br><br>
+* To build the project, `$ (cd build && make)` now, the executables will be generated at `./build/examples` (executable of main.cpp from examples) and `./build/foo_parser/` (parser library) directories. <br> <br> 
+* Create/Copy the a file containing Foo structure and execute the binary. Ex: `$ (cd build/examples && cp ../../examples/parse_file.foo . && ./example)` <br><br> 
+* Its good practice to test the build, the test executable will be generated at `./build/tests/parser_test` and make sure it passes all the tests.
 
 #### All Done!
 
