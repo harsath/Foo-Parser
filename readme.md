@@ -1,4 +1,5 @@
 ### Foo-Parser: primitive structure parser written in C++
+[![Build Status](https://travis-ci.org/harsathAI/Foo-Parser.svg?branch=master)](https://travis-ci.org/harsathAI/Foo-Parser)
 
 Usage syntax:
 ```
