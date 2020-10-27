@@ -1,3 +1,24 @@
+// Foo-Parser: primitive structure parser written in C++
+// Copyright © 2020 Harsath
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+// or the use or other dealings in the software.
+
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
@@ -27,7 +48,7 @@ std::vector<Foo::Pair> Foo::FooParser::get_key_value_pair_from_identifier(const 
 	if(_fillin_datastructure.count(identifier)){
 		returner = _fillin_datastructure.at(identifier);
 	}else{
-		std::cerr << "Invalid Identifier" std::endl;
+		std::cerr << "Invalid Identifier" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	return returner;
@@ -81,7 +102,7 @@ void Foo::FooParser::foo_parse() noexcept {
 						Foo::Pair tmp_pair = { std::move(key_value_splitter.at(0)), std::move(key_value_splitter.at(2)) };
 						_fillin_datastructure[tmp_identifier].push_back(tmp_pair); 
 					}else{
-						std::cerr << "Key value pair must be split by \"->\" notation" std::endl; 
+						std::cerr << "Key value pair must be split by \"->\" notation" << std::endl; 
 						exit(EXIT_FAILURE);
 					}
 				}else if(token_line == "}"){
